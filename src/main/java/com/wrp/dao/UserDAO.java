@@ -25,4 +25,7 @@ public interface UserDAO {
 
     @Delete({"delete from ",TABLE_NAME," where id=#{id}"})
     void deleteById(int id);
+
+    @Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where name=#{username}"})
+    User selectByName(String username);
 }
