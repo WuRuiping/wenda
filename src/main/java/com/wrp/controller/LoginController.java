@@ -73,10 +73,10 @@ public class LoginController {
                 cookie.setMaxAge(3600 * 24 * 5);
                 cookie.setPath("/");
                 response.addCookie(cookie);
-//                if (StringUtils.isNotBlank("next")) {
-//                    System.out.println("next 是 "+next);
-//                    return "redirect:" + next;
-//                }
+                if (StringUtils.isNotBlank(next)) {
+                    System.out.println("next 是 "+next);
+                    return "redirect:" + next;
+                }
                 return "redirect:/";
 
             } else {
@@ -95,7 +95,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping(path = "/logout/",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(path = "/logout",method = {RequestMethod.GET,RequestMethod.POST})
     public String logout(@CookieValue("ticket") String ticket){
         userService.logout(ticket);
         return "redirect:/";

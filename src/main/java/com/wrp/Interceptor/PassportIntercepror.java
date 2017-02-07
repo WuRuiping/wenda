@@ -34,7 +34,6 @@ public class PassportIntercepror implements HandlerInterceptor{
     //调用其他页面之前先调用这个函数
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        System.out.println("进入PassprortInterceptor");
         String ticket = null;
         //验证浏览器发送过来的ticket
         if(httpServletRequest.getCookies() != null){
@@ -47,7 +46,6 @@ public class PassportIntercepror implements HandlerInterceptor{
         }
 
         if(ticket != null){
-            System.out.println("ticket"+ticket);
             LoginTicket loginTicket = loginTicketDAO.selectByTicket(ticket);
             if(loginTicket == null || loginTicket.getExpired().before(new Date()) || loginTicket.getStatus() != 0){
                 return true;
