@@ -74,7 +74,6 @@ public class LoginController {
                 cookie.setPath("/");
                 response.addCookie(cookie);
                 if (StringUtils.isNotBlank(next)) {
-                    System.out.println("next 是 "+next);
                     return "redirect:" + next;
                 }
                 return "redirect:/";
