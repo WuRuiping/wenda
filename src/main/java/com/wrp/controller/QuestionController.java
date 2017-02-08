@@ -3,17 +3,18 @@ package com.wrp.controller;
 import com.wrp.model.HostHolder;
 import com.wrp.model.Question;
 import com.wrp.service.QuestionService;
+import com.wrp.service.UserService;
 import com.wrp.util.WendaUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+import javax.xml.stream.events.Comment;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by wuruiping on 2017/2/7.
@@ -25,6 +26,9 @@ public class QuestionController {
 
     @Autowired
     QuestionService questionService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     HostHolder hostHolder;
@@ -57,6 +61,12 @@ public class QuestionController {
 
     }
 
-
+   @RequestMapping(value = "question/{qid}",method = {RequestMethod.GET})
+    public String questionDetail(Model model, @PathVariable("qid") int qid){
+        Question question = questionService.getById(qid);
+        model.addAttribute("question",question);
+        model.addAttribute("user",userService.getUser(question.getUserId()));
+        return "detail";
+   }
 
 }
