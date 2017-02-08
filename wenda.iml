@@ -89,5 +89,6 @@
     <orderEntry type="library" name="Maven: org.json:json:20140107" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-test:4.2.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.13" level="project" />
   </component>
 </module>
